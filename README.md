@@ -28,6 +28,3 @@ Object of class "Stack" can be created using three different constructors:
 4. isEmpty(): Boolean - returns true if the upperIndex property is equal to 0, otherwise - returns false.
 5. setSize(value: Int) - checks if provided parameter's value is less than value of upperIndex property and if so - throws an exception, otherwise sets size property to the parameter value.
 6. map(mapper: (T?) -> T?) : Stack<T> - applies some function passed as a parameter to every element of a Stack and returns a new Stack of these updated elements.
-7. override fun toString(): String - overrides standart "toString" function: returns a string of all Stack elements surrounded by "[]" and divided by comma.
-8. override fun hashCode(): Int - overrides standart "hashCode" function: returns hashCode of a stack property of the Stack object.
-

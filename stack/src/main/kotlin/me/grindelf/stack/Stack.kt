@@ -1,18 +1,5 @@
 package me.grindelf.stack
 
-fun main() {
-    val st = Stack(arrayListOf(3, 4, 5))
-    println(st)
-    val nst = st.map {
-        when (it) {
-            null -> null
-            else -> it + 2
-        }
-    }
-    println(nst)
-    println(st)
-}
-
 class Stack<T> {
     private var stack: ArrayList<T?>
     private var upperIndex: Int
@@ -38,8 +25,8 @@ class Stack<T> {
     }
 
     fun push(element: T?) {
-        if (upperIndex > size) throw Exception("Stack overflow!")
-        stack[upperIndex] = element
+        if (upperIndex >= size) throw Exception("Stack overflow!")
+        stack.add(upperIndex, element)
         upperIndex++
     }
 
@@ -60,10 +47,19 @@ class Stack<T> {
         size = value
     }
 
-    fun map(mapper: (T?) -> T?) = Stack<T>(size).apply {
+    /*fun map(mapper: (T?) -> T?) = Stack<T>(size).apply {
         stack.forEach {
-            push(mapper(it))
+            this.push(mapper(it))
         }
+    }*/ // does not work
+
+    fun map(mapper: (T?) -> T?): Stack<T> {
+        val updatedStack = Stack<T>(size)
+        stack.forEach {
+            updatedStack.push(mapper(it))
+        }
+
+        return updatedStack
     }
 
     override fun toString(): String {
