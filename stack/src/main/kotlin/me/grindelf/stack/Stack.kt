@@ -1,7 +1,7 @@
 package me.grindelf.stack
 
 class Stack<T> {
-    private var stack: ArrayList<T>
+    private var stack: ArrayList<T?>
     private var upperIndex: Int = 0
     private var size: Int
 
@@ -11,7 +11,7 @@ class Stack<T> {
         stack = ArrayList(this.size)
     }
 
-    constructor(collection: ArrayList<T>) {
+    constructor(collection: ArrayList<T?>) {
         size = collection.size
         stack = collection
     }
@@ -23,7 +23,6 @@ class Stack<T> {
 
     fun push(element: T?) {
         if (upperIndex > size) throw Exception("Stack overflow!")
-        if (element == null) throw Exception("Null was added!")
         stack[upperIndex] = element
         upperIndex++
     }
@@ -44,4 +43,15 @@ class Stack<T> {
         if (value < upperIndex) throw Exception("Attempt to make stack smaller than its containment!")
         size = value
     }
+
+    override fun toString(): String {
+        var string = ""
+        stack.forEach {
+            string += it.toString()
+        }
+
+        return string
+    }
+
+    override fun hashCode() = stack.hashCode()
 }
