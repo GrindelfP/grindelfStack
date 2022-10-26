@@ -1,6 +1,6 @@
 package me.grindelf.stack
 
-data class Stack<T>(
+data class Stack<T> private constructor(
     private var elements: ArrayList<T?>,
     private var size: Int,
     private var upperIndex: Int = 0
