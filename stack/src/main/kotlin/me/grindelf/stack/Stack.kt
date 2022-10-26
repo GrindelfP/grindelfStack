@@ -1,21 +1,21 @@
 package me.grindelf.stack
 
-data class Stack<T> private constructor(
-    private var elements: ArrayList<T?>,
-    private var size: Int,
-    private var upperIndex: Int = 0
+data class Stack<T>(
+    private var elements: ArrayList<T?>
     ) {
+    private var size: Int = elements.size
+    private var upperIndex: Int = elements.count { it != null }
 
-
-    constructor(size: Int) : this(ArrayList<T?>(size), size, 0) {
+    constructor(size: Int) : this(ArrayList<T?>(size)) {
         if (size < 0) throw Exception("Negative size of stack provided!")
     }
-    constructor(collection: ArrayList<T?>) : this(collection, collection.size) {
-        if (!isMonotone(collection)) throw Exception("Collection has nulls inbetween non-null elements!")
-        upperIndex = getUpperIndex(collection)
-    }
-    constructor() : this(ArrayList<T?>(0), 0)
+    
+    constructor() : this(ArrayList<T?>(0))
 
+    init {
+        if (!isMonotone(elements)) throw Exception("Collection has nulls inbetween non-null elements!")
+        upperIndex = getUpperIndex(elements)
+    }
     fun push(element: T?) {
         require(upperIndex < size) { "Stack overflow!" }
         elements.add(upperIndex, element)
