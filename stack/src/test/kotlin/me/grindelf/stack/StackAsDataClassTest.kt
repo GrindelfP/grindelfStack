@@ -7,7 +7,7 @@ class StackAsDataClassTest {
 
     @Test
     fun `GIVEN stack with elements WHEN applying map THEN new stack with modified elements returned`() {
-        val stack = StackAsDataClass(arrayListOf(1, 2, 3))
+        val stack = Stack(arrayListOf(1, 2, 3))
         val newStack = stack.map {
             when (it) {
                 null -> null
