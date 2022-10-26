@@ -1,6 +1,8 @@
 package me.grindelf.stack
 
 class Stack<T> {
+    // It's better to name it as stackContainer etc.,
+    // because it's bad practice when private field name clashes wih class name
     private var stack: ArrayList<T?>
     private var upperIndex: Int
     private var size: Int
@@ -47,20 +49,27 @@ class Stack<T> {
         size = value
     }
 
-    /*fun map(mapper: (T?) -> T?) = Stack<T>(size).apply {
-        stack.forEach {
-            this.push(mapper(it))
+    /**
+     * We should use also here.
+     * The problem with [apply] was following: inside apply we have access to the fields and functions of the object
+     * we call apply on. So we do stack.forEach, we access stack of the new Stack, not the one we try to map. Of course,
+     * it's empty and for each is not executed. When we use [also] we access the object using keyword `it` (I change
+     * default it with newStack for better readability).
+     */
+    fun map(mapper: (T?) -> T?) = Stack<T>(size).also { newStack ->
+        stack.forEach { element ->
+            newStack.push(mapper(element))
         }
-    }*/ // does not work
+    }
 
-    fun map(mapper: (T?) -> T?): Stack<T> {
+    /*fun map(mapper: (T?) -> T?): Stack<T> {
         val updatedStack = Stack<T>(size)
         stack.forEach {
             updatedStack.push(mapper(it))
         }
 
         return updatedStack
-    }
+    }*/
 
     override fun toString(): String {
         var string = "["
