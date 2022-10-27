@@ -3,7 +3,13 @@ This is my Kotlin implementation of stack data structure
 
 ## How it works?
 Stack is a generic collection of elements, which is implementing the LIFO (Last-In, First-Out): when you add several items to the stack, the only way to get the first one is to exclude all the following ones.
-You can add element to the stack, exclude and return the last element, return it without excluding, know if the stack is empty, set stack container size and create a new stack, containing the elements of the initial stack, on which some operation was done.
+You can:
+- add element to the stack, 
+- exclude and return the last element, 
+- return it without excluding, 
+- know if the stack is empty, 
+- set stack container size 
+- and create a new stack, containing the elements of the initial stack, on which some operation was done.
 
 ## Creating an object of a Stack
 Object of class "Stack" can be created using three different constructors:
