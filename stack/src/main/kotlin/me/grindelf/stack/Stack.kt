@@ -6,16 +6,18 @@ data class Stack<T>(
     private var size: Int = elements.size
     private var upperIndex: Int = elements.count { it != null }
 
-    constructor(size: Int) : this(ArrayList<T?>(size)) {
-        if (size < 0) throw Exception("Negative size of stack provided!")
+    constructor(size: Int) : this(ArrayList<T?>()) {
+        require (size >= 0) { "Negative size of stack provided!" }
+        setSize(size)
     }
     
-    constructor() : this(ArrayList<T?>(0))
+    constructor() : this(ArrayList<T?>())
 
     init {
-        if (!isMonotone(elements)) throw Exception("Collection has nulls inbetween non-null elements!")
+        require(isMonotone(elements)) { "Collection has nulls inbetween non-null elements!" }
         upperIndex = getUpperIndex(elements)
     }
+
     fun push(element: T?) {
         require(upperIndex < size) { "Stack overflow!" }
         elements.add(upperIndex, element)
