@@ -2,6 +2,8 @@
 This is my Kotlin implementation of stack data structure
 
 ## How it works?
+Stack is a generic collection of elements, which is implementing the LIFO (Last-In, First-Out): when you add several items to the stack, the only way to get the first one is to exclude all the following ones.
+You can add element to the stack, exclude and return the last element, return it without excluding, know if the stack is empty, set stack container size and create a new stack, containing the elements of the initial stack, on which some operation was done.
 
 ## Creating an object of a Stack
 Object of class "Stack" can be created using three different constructors:
@@ -11,8 +13,8 @@ Object of class "Stack" can be created using three different constructors:
 
 ## Stack realization
 ### Properties (private)
-1. stack: ArrayList<T?> - stack itself, realized as an instance of a Kotlin ArrayList.
-2. size: Int - maximum capasity of this Stack (can be modified externally using "setSize" function).
+1. elements: ArrayList<T?> - stack itself, realized as an instance of a Kotlin ArrayList.
+2. length: Int - maximum capasity of this Stack (can be modified externally using "setSize" function).
 3. upperIndex: Int - index of the topmost element of Stack (if it's equal to the size property it means, that the Stack is full).
 
 ### Constructors
@@ -28,3 +30,7 @@ Object of class "Stack" can be created using three different constructors:
 4. isEmpty(): Boolean - returns true if the upperIndex property is equal to 0, otherwise - returns false.
 5. setSize(value: Int) - checks if provided parameter's value is less than value of upperIndex property and if so - throws an exception, otherwise sets size property to the parameter value.
 6. map(mapper: (T?) -> T?) : Stack<T> - applies some function passed as a parameter to every element of a Stack and returns a new Stack of these updated elements.
+
+### Functions (private)
+1. isMonotone(collection: ArrayList<T?>): Boolean - checks if the colection passed as a parameter is monotone (if there are any null elements, they aren't surrounded by non-null elements).
+2. getUpperIndex(collection: ArrayList<T?>): Int - returns the index of the last non-null element in a row.

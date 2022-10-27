@@ -3,7 +3,7 @@ package me.grindelf.stack
 data class Stack<T>(
     private var elements: ArrayList<T?>
     ) {
-    private var size: Int = elements.size
+    private var length: Int = elements.size
     private var upperIndex: Int = elements.count { it != null }
 
     constructor(size: Int) : this(ArrayList<T?>()) {
@@ -19,7 +19,7 @@ data class Stack<T>(
     }
 
     fun push(element: T?) {
-        require(upperIndex < size) { "Stack overflow!" }
+        require(upperIndex < length) { "Stack overflow!" }
         elements.add(upperIndex, element)
         upperIndex++
     }
@@ -38,10 +38,10 @@ data class Stack<T>(
 
     fun setSize(value: Int) {
         require(value > upperIndex) { "Attempt to make stack smaller than its containment!" }
-        size = value
+        length = value
     }
 
-    fun map(mapper: (T?) -> T?) = Stack<T>(size).also { newStack ->
+    fun map(mapper: (T?) -> T?) = Stack<T>(length).also { newStack ->
         elements.forEach { element ->
             newStack.push(mapper(element))
         }
