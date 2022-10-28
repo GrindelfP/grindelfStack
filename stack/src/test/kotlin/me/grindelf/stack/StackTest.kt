@@ -2,7 +2,6 @@ package me.grindelf.stack
 
 import org.junit.Assert
 import org.junit.Test
-import java.lang.Exception
 import kotlin.test.assertEquals
 
 class StackTest {
@@ -56,7 +55,7 @@ class StackTest {
     }
 
     @Test
-    fun `GIVEN stack size 3 and 2 elements WHEN setSize to 4 THEN returned elemnts in reverse with try to return one more element which returnes null and stack is shown`() {
+    fun `GIVEN stack size 3 and 2 elements WHEN setSize to 4 THEN returned elemnts in reverse with try to return one more element which returnes null`() {
         val stack = Stack<Int>(3)
         stack.push(1)
         stack.push(2)
@@ -64,13 +63,12 @@ class StackTest {
         assertEquals(stack.pop(), 2)
         assertEquals(stack.pop(), 1)
         assertEquals(stack.pop(), null)
-        println(stack)
     }
 
     @Test
     fun `GIVEN stack default size WHEN push element THEN exception is thrown`() {
         val stack = Stack<Int>()
-        Assert.assertThrows(Exception::class.java) {
+        Assert.assertThrows(IllegalArgumentException::class.java) {
             stack.push(1)
         }
     }
@@ -78,7 +76,7 @@ class StackTest {
     @Test
     fun `GIVEN stack default size WHEN setSIze to -4 THEN exception is thrown`() {
         val stack = Stack<Int>()
-        Assert.assertThrows(Exception::class.java) {
+        Assert.assertThrows(IllegalArgumentException::class.java) {
             stack.setSize(-4)
         }
     }
@@ -89,21 +87,21 @@ class StackTest {
         stack.push(1)
         stack.push(2)
         stack.push(3)
-        Assert.assertThrows(Exception::class.java) {
+        Assert.assertThrows(IllegalArgumentException::class.java) {
             stack.setSize(1)
         }
     }
 
     @Test
     fun `GIVEN stack with elements WHEN passed elements divided by null THEN exception is thrown`() {
-        Assert.assertThrows(Exception::class.java) {
+        Assert.assertThrows(IllegalArgumentException::class.java) {
             Stack(arrayListOf(1, null, 2))
         }
     }
 
     @Test
     fun `GIVEN stack with size WHEN create stack of size -5 THEN exception is thrown`() {
-        Assert.assertThrows(Exception::class.java) {
+        Assert.assertThrows(IllegalArgumentException::class.java) {
             Stack<Int>(-5)
         }
     }
