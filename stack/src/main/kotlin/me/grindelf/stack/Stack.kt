@@ -37,6 +37,7 @@ data class Stack<T>(
     }
 
     fun setSize(value: Int) {
+        require(value >= 0) { "Negative size of stack provided!" }
         require(value > upperIndex) { "Attempt to make stack smaller than its containment!" }
         length = value
     }
@@ -48,7 +49,7 @@ data class Stack<T>(
     }
 
     private fun isMonotone(collection: ArrayList<T?>): Boolean {
-        for (i in collection.indices - 1) {
+        for (i in collection.indices) {
             if (collection[i] == null && collection[i + 1] != null) return false
         }
 
